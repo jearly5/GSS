@@ -1,6 +1,6 @@
 ---
 title: "Social Survey 2010"
-author: "Put your name here!"
+author: "Jada Early"
 date: "Fall 2018"
 output:
   html_document:
@@ -43,16 +43,58 @@ alldata <- read.csv(file="gss2010.csv", header=TRUE)
 barchartGC(~race+condrift, data=alldata, type = "percent") 
 ```
 
+  About 22% of Blacks do not believe continental drift is real, about 10% of others do not believe continental drift is real, and about 8% of whites do not believe continental drift is real.  
+
+```{r}
+barchartGC(~race+cappun, data=alldata, type = "percent")
+```
+
+   About 45% of Blacks are in favor of Capital punishment, 55% of others are in favor, and 70% of whites are in favor of capital punishment.  
+  
+```{r}
+barchartGC(~cappun+condrift, data=alldata, type = "percent")
+```
+  
+  
+    10% of those in favor of capital punishment believe continental drift is false and 65% who do not believe incapital punishment do believe continental drift is real.  
+    
 
 ### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+```{r}
+ tab1 =xtabs(~race+condrift, data=alldata)
+rowPerc(tab1)
+colPerc(tab1)
+```
 
+  The results show 23% of Blacks believe continental drift is false, 9% of others believe continental drift is false, and 8% of whites believe it is false.  
+  
+```{r}
+tab2 =xtabs(~race+cappun, data=alldata)
+rowPerc(tab2)
+colPerc(tab2)
+```
+
+  The results show that 46% of Blacks are in favor of capital punishment, 56% of others, and 72% of whites are also in favor.  
+  
+```{r}
+tab3 =xtabs(~cappun+condrift, data=alldata)
+rowPerc(tab3)
+colPerc(tab3)
+```
+  
+    The results show that 10% of those in favor of capital punishment believe contintental drift is false and 11% who oppose it believe it is false. 
 ## Inferential Results
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
+```{r}
+chisqtestGC(tab1,graph=TRUE)
+```
 
-
+  We reject the null hypothesis because the p-value is too low.
 # Discussion and Conclusion
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
+
+  The data appeared to be related. It did not seem to be independent. 
